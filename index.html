@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KICHU GAMING 🎮</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #05060b;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  width: 92%;
+  max-width: 500px;
+  min-height: 650px;
+  padding: 35px 20px;
+  text-align: center;
+  border-radius: 30px;
+  background: radial-gradient(circle at top, #18233d, #080910 60%);
+  box-shadow: 0 0 35px #2454ff55;
+  border: 2px solid #252b40;
+}
+
+h1 {
+  margin: 10px 0 55px;
+  font-size: 32px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px #65aaff;
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.choice {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #10121b;
+  border: 3px solid #414653;
+  font-size: 55px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choice:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #4d8cff;
+}
+
+#result {
+  margin-top: 45px;
+  font-size: 22px;
+  min-height: 60px;
+}
+
+.score {
+  margin-top: 25px;
+  font-size: 18px;
+}
+
+.reset {
+  margin-top: 25px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  background: #202638;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+<h1>KICHU GAMING</h1>
+
+<h2>
+SELECT YOUR<br>
+WEAPON
+</h2>
+
+<div class="buttons">
+
+<button class="choice" onclick="play('rock')">
+✊
+</button>
+
+<button class="choice" onclick="play('paper')">
+✋
+</button>
+
+<button class="choice" onclick="play('scissors')">
+✌️
+</button>
+
+</div>
+
+<div id="result">
+Choose your weapon 🎮
+</div>
+
+<div class="score">
+🧑 You: <span id="you">0</span>
+&nbsp; | &nbsp;
+🤖 CPU: <span id="cpu">0</span>
+</div>
+
+<button class="reset" onclick="resetGame()">
+🔄 RESET
+</button>
+
+</div>
+
+<script>
+
+let you = 0;
+let cpu = 0;
+
+function play(player) {
+
+const choices = ["rock", "paper", "scissors"];
+
+const computer =
+choices[Math.floor(Math.random() * choices.length)];
+
+let message = "";
+
+if (player === computer) {
+
+message = "🤝 DRAW!";
+
+}
+
+else if (
+
+(player === "rock" && computer === "scissors") ||
+(player === "paper" && computer === "rock") ||
+(player === "scissors" && computer === "paper")
+
+) {
+
+you++;
+message = "🔥 YOU WIN!";
+
+}
+
+else {
+
+cpu++;
+message = "🤖 CPU WINS!";
+
+}
+
+document.getElementById("result").innerHTML =
+message +
+"<br><small>You: " + player +
+" | CPU: " + computer + "</small>";
+
+document.getElementById("you").textContent = you;
+document.getElementById("cpu").textContent = cpu;
+
+}
+
+function resetGame() {
+
+you = 0;
+cpu = 0;
+
+document.getElementById("you").textContent = "0";
+document.getElementById("cpu").textContent = "0";
+
+document.getElementById("result").textContent =
+"Choose your weapon 🎮";
+
+}
+
+</script>
+
+</body>
+</html>
